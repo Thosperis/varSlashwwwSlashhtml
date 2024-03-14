@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>owo</title>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+<meta charset='UTF-8'>
+<html lang='en'>
+<meta http-equiv="Cache-control" content="public">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+			background-color: #000000;
+        }
+        .file-explorer {
+            width: 50%;
+			height: 40%;
+			margin: 20% auto;
+            border: 1px solid #ccc;
+			padding: 10%; 
+			color: white;
+right: 12%;
+  top: -30%;
+  
+			position: absolute;
+        }
+		
+/*Path File explorer 1920px*/
+/* FE1920px*/
+@media (max-width: 1920px) {
+  .file-explorer {
+top: -33%;
+  }
+}
+/*Path File explorer 1920px*/
+/* FE1920px*/
+@media (max-height: 800px) {
+  .file-explorer {
+top: -28%;
+  }
+}
+        .file-explorer h1 {
+            font-size: 24px;
+			
+        }
+        .directory {
+            list-style-type: none;
+            padding: 0;
+        }
+        .directory li {
+            padding: 5px 0;
+            cursor: pointer;
+        }
+        .directory li:hover {
+            background-color: #f0f0f0;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 50px;
+        }
+        .content-box {
+            background-color: #fff;
+            padding: 10%;
+			height: 300%;
+			width: 200%;
+			left: 0%;
+			top: 0%;
+			position:absolute;
+        }
+        .rainbow-text {
+            font-size: 50px;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            animation: rainbow-animation 6s linear infinite;
+        }
+
+        @keyframes rainbow-animation {
+            0%, 100% {
+                text-shadow: 0 0 8px #ff0000, 0 0 16px #ff7f00, 0 0 24px #ffff00, 0 0 32px #00ff00, 0 0 40px #0000ff, 0 0 48px #4b0082, 0 0 56px #9400d3;
+            }
+            16% {
+                text-shadow: 0 0 8px #ff7f00, 0 0 16px #ffff00, 0 0 24px #00ff00, 0 0 32px #0000ff, 0 0 40px #4b0082, 0 0 48px #9400d3, 0 0 56px #ff0000;
+            }
+            33% {
+                text-shadow: 0 0 8px #ffff00, 0 0 16px #00ff00, 0 0 24px #0000ff, 0 0 32px #4b0082, 0 0 40px #9400d3, 0 0 48px #ff0000, 0 0 56px #ff7f00;
+            }
+            50% {
+                text-shadow: 0 0 8px #00ff00, 0 0 16px #0000ff, 0 0 24px #4b0082, 0 0 32px #9400d3, 0 0 40px #ff0000, 0 0 48px #ff7f00, 0 0 56px #ffff00;
+            }
+            66% {
+                text-shadow: 0 0 8px #0000ff, 0 0 16px #4b0082, 0 0 24px #9400d3, 0 0 32px #ff0000, 0 0 40px #ff7f00, 0 0 48px #ffff00, 0 0 56px #00ff00;
+            }
+            83% {
+                text-shadow: 0 0 8px #4b0082, 0 0 16px #9400d3, 0 0 24px #ff0000, 0 0 32px #ff7f00, 0 0 40px #ffff00, 0 0 48px #00ff00, 0 0 56px #0000ff;
+            }
+        }
+        .menu-bar {
+            background-color: #202225; /* The color of your menu bar */
+            padding: 10px 0;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+					overflow: hidden;
+        }
+        .menu-item {
+            color: #ccc;
+            display: inline-block;
+            padding: 0 2%; /* Use percentages for scaling */
+            cursor: pointer;
+        }
+        .menu-item:not(:first-child) {
+            border-left: 1px solid #333; /* Separator for menu items */
+        }
+        .menu-item:hover {
+            background-color: #333; /* Hover effect */
+        }
+    .path-navigator {
+        background: #333; /* Dark grey background */
+        padding: .5%;
+        display: flex;
+        align-items: center;
+        color: white;
+		right: 0%;
+		width: 99.5%;
+		position: absolute;
+		overflow: hidden;
+
+    }
+/*Path Navigator Position 1920px*/
+/* PN1920px*/
+@media (max-width: 1920px) {
+  .path-navigator {
+top: 4%;
+  }
+}
+/*Path Navigator Position 1280px*/
+/* PN1280px*/
+@media (max-width: 1280px) {
+  .path-navigator {
+		top: 6%;
+  }
+}
+    .arrow {
+        cursor: pointer;
+        margin: 0 .5%;
+    }
+    .path {
+        flex-grow: 1;
+        margin: 0 1%;
+
+    }
+    .path-item {
+        display: inline;
+        margin-right: .1%;
+    }
+    .search-container {
+        position: relative;
+        width: 10%;
+		left: -5%;
+
+		
+    }
+    .search-input {
+        width: 100%;
+        padding: 3px 30px 3px 10px;
+        border: none;
+        background: #555; /* Lighter grey background */
+        color: white;
+    }
+    .search-icon {
+        position: absolute;
+        right: -25%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+/*Path Search Icon Position 1920px*/
+/* PSI1920px*/
+@media (max-width: 1920px) {
+  .search-icon {
+        right: -15%;
+  }
+}
+/*Path Search Icon Position 1280px*/
+/* PSI1280px*/
+@media (max-width: 1280px) {
+  .search-icon {
+        right: -15%;
+  }
+}
+    </style>
+</head>
+<body>
+<div class="path-navigator">
+    <div class="arrow">&#8678;</div> <! Left arrow >
+    <div class="arrow">&#8680;</div> <! Right arrow >
+    <div class="arrow">&#8679;</div> <! Up arrow >
+    <div class="path">
+        <! Paths >
+        <span class="path-item">This PC ></span>
+        <span class="path-item">Files (D:) ></span>
+        <span class="path-item">db ></span>
+        <span class="path-item">Software ></span>
+        <span class="path-item">Psudo Coding ></span>
+        <span class="path-item">HTML ></span>
+        <span class="path-item">About Me</span>
+    </div>
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search...">
+        <span class="search-icon">&#128269;</span> <!Magnifying glass icon>
+    </div>
+</div>
+    <div class="menu-bar">
+        <span class="menu-item">File</span>
+        <span class="menu-item">Home</span>
+        <span class="menu-item">Share</span>
+        <span class="menu-item">View</span>
+    </div>
+    <div class="file-explorer">
+    <div class="rainbow-text">Hello</div>
+        <ul class="directory">
+		    <li>.</li>
+            <li onclick="window.location.href = 'https://github.com/Thosperis/sumin';">..</li>
+            <li onclick="showOverlay('about')">About me</li>
+            <li onclick="showOverlay('contacts')">Contacts</li>
+        </ul>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="content-box">
+            <ul class="directory">
+                <li>.</li>
+                <li onclick="hideOverlay()">..</li>
+            </ul>
+            <div id="overlayContent">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showOverlay(type) {
+            document.getElementById('overlay').style.display = 'block';
+            let content = '';
+            if (type === 'about') {
+                content = '<p>makin a layout of the ab me page, will complete later</p>';
+            } else if (type === 'contacts') {
+                content = '<p>Dsicord: thosperus</p>';
+            }
+            document.getElementById('overlayContent').innerHTML = content;
+        }
+
+        function hideOverlay() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
